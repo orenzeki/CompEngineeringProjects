@@ -1,0 +1,227 @@
+\documentclass[10pt,a4paper, margin=1in]{article}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, pifont}
+\usepackage{amsthm}
+\usepackage{graphicx}
+
+
+
+\usepackage{pgfplots}
+
+
+
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=10mm,
+ right=10mm,
+ top=10mm,
+ bottom=10mm,
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ % Write both of your names here. Fill exxxxxxx with your ceng mail address.
+ \author{
+  Kosen, Emrah\\
+  \texttt{e1942317@ceng.metu.edu.tr}
+  \and
+  Oren, Zeki\\
+  \texttt{e2264612@ceng.metu.edu.tr}
+}
+\title{CENG 384 - Signals and Systems for Computer Engineers \\
+Spring 2018-2019 \\
+Written Assignment 2}
+\begin{document}
+\maketitle
+
+
+
+\noindent\rule{19cm}{1.2pt}
+
+\begin{enumerate}
+
+\item
+
+    \begin{enumerate}
+    % Write your solutions in the following items.
+    \item %write the solution of q1a
+        $\frac{dy(t)}{dt}$ = x(t) - 4y(t)
+
+
+
+    \item 
+    
+    y(t) = $y_{p}$(t) + $y_{h}$(t)\\\\
+    $\frac{dy(t)}{dt}$ + 4y(t) = 0\\\\
+    $\lambda - 4 = 0$\\\\
+    $\lambda  = 4 $\\\\
+    $y_{h}$(t) = A$e^{-4t}$ \\\\
+    x(t) = $e^{-t} + e^{-2t}$\\\\
+    for $e^{-t}$  $\rightarrow $ $ y_{p1} = H(-1)e^{-t} $\\\\
+    for $e^{-2t}$  $\rightarrow y_{p2} = H(-2)e^{-2t} $\\\\
+    for x(t) $ \rightarrow  y_{p} = H(-2)e^{-2t} + H(-1)e^{-t} $\\\\
+    H(-1) = $\frac{1 \lambda^0}{1*\lambda^0 - 4*\lambda^1}  = \frac{1}{5}$\\\\
+    H(-2) = $\frac{1 \lambda^0}{1*\lambda^0 - 4*\lambda^1}  = \frac{1}{9}$\\\\
+    $y_{p} = H(-2)e^{-2t} + H(-1)e^{-t}  = \frac{1}{9}e^{-2t} + \frac{1}{5}e^{-t} $\\\\
+    y(x) = $y_{p} + y_{h} = \frac{1}{9}e^{-2t} + \frac{1}{5}e^{-t} +  Ae^{-4t}$\\\\\\
+    
+    The system is initially at rest. So, y(0) = 0 and $y^{'}$ = 0 for t $<$ 0\\\\
+    y(0) = $ \frac{1}{9}e^{0} + \frac{1}{5}e^{0} +  Ae^{0}$\\\\
+    A = $\frac{-14}{45}$\\\\
+    
+     y(x) = $ \frac{1}{9}e^{-2t} + \frac{1}{5}e^{-t} +  \frac{-14}{45}e^{-4t}$\\\\\\
+    
+    
+    
+   
+
+  
+    
+    \end{enumerate}
+\newpage
+
+\item      
+    \begin{enumerate}
+    \item %write the solution of q2a
+      x[n]*$\delta[n- n_{0}$] = x[n-$n_{0}$]\\\\
+      By distribution rule x[n]*h[n] = x[n]*($\delta[n+1] +2\delta[n] -3\delta[n-2]$)\\\\
+      = $x[n]*\delta[n+1] +2(x[n]*\delta[n]) -3(x[n]*\delta[n-2])$ \\\\
+      = x[n+1] + 2x[n] - 3x[n-2]\\\\
+      x[n] = $\delta[n-1] - 3\delta[n-2] + \delta[n-3]$\\\\
+      y[n] =  $\delta[n] - 3\delta[n-1] + \delta[n-2]$ + 2*( $\delta[n-1] - 3\delta[n-2] + \delta[n-3]$) -3( $\delta[n-3] - 3\delta[n-4] + \delta[n-5]$)\\\\
+      So,  y[n] =  $\delta[n] - \delta[n-1] - 8\delta[n-2]$ + 11$\delta[n-3]$ - 3$\delta[n-4]$\\\\
+       
+        
+        
+    \item 
+    
+     .\\
+        $\frac{du(t)}{dt} = \delta(t)$ \\\\
+        $\frac{dx(t)}{dt} = \frac{du(t)}{dt} + \frac{du(t-1)}{dt} = \delta(t) + \delta(t-1) $  \\\\
+        $\frac{dx(t)}{dt}$*h(t) = ($\delta(t) + \delta(t-1)$)*h(t) \\\\
+        = $\delta(t)*h(t) + \delta(t-1)*h(t)$\\\\
+        = h(t) + *h(t-1) = ($e^t + e^{(t-1)}$)u(t)
+
+    \end{enumerate}
+
+
+
+\item      
+    \begin{enumerate}
+    \item %write the solution of q3a
+       .\\
+       y(t) = $\int_{0}^{t} e^{-z}e^{-3(t-z)}dz$\\\\
+        = $\int_{0}^{t} e^{-3t}e^{2z}dz$\\\\
+         = $e^{-3t}*(e^{2t} - 1)$ \\\\
+       y(t) = ($e^{-2t} - (e^{-3t})$ * u(t).\\\\
+        
+        
+    \item 
+     x(t)*h(t) = $\int_{-\infty}^{\infty} x(z)h(t - z)dz$ \\\\
+     = $\int_{0}^{\infty} e^{t}(u(t - z - 1) - u(t - z - 2))dz$ \\\\
+     The system is nonzero in (t-2) $<$ z $<$ (t-1).\\\\
+     For t $<=$ 1, y(t) = 0.
+     -For 1 $<$ t $<=$ 2;\\\\
+     y(t) =  $\int_{0}^{t-1} e^{z}dz$ = $e^{t-1}$ - 1.\\\\
+     -For t $>$ 2;\\\\
+     y(t) =  $\int_{t-2}^{t-1} e^{z}dz$ = $e^{t-1}$ - $e^{t-2}$.\\\\
+     
+     
+     
+     
+     
+      
+
+    \end{enumerate}
+
+\item 
+    \begin{enumerate}
+    \item %write the solution of q4a
+        $y^{2}$ - 15y + 26y = 0\\\\
+        (y-2)*(y-13) = 0\\\\
+        $y_{1}$ = 13 , $y_{2}$ = 2\\\\
+        y[n] = $c_{1}* 13^n$ +  $c_{2}* 2^n$\\\\
+        for y[0] = 10 = $c_{1}* 13^0$ +  $c_{2}* 2^0$ \\\\
+        10 = $c_{1}$ +  $c_{2}$ \\\\
+        for y[1] = 42 = $c_{1}* 13^1$ +  $c_{2}* 2^1$ \\\\
+        $c_{1}$ = 2\\\\
+        $c_{2}$ = 8\\\\
+        y[n] = $2* 13^n$ +  $8* 2^n$\\\\
+        
+    \item %write the solution of q4b
+        $y^{2}$ - 3y + 1 = 0\\\\
+        y1 = -$\frac{b+\sqrt{b^{2}-4ac}}{2a}$ = $\frac{3+\sqrt{5}}{2}$, \hspace{0.5cm}  y2 = -$\frac{b-\sqrt{b^{2}-4ac}}{2a}$ = $\frac{3-\sqrt{5}}{2}$\\\\
+        y[n] = $c_{1}*(\frac{3+\sqrt{5}}{2})^{n}$ +  $c_{2}* (\frac{3-\sqrt{5}}{2})^{n}$\\\\
+        for y[0] = 1 = $c_{1} $ +  $c_{2}$ \\\\
+        for y[1] = 2 = $c_{1}* (\frac{3+\sqrt{5}}{2})$ +  $c_{2}* (\frac{3-\sqrt{5}}{2})$ \\\\
+        $c_{1}$ = $\frac{\sqrt{5}+1}{2\sqrt{5}}$\\\\
+        $c_{2}$ = $\frac{\sqrt{5}-1}{2\sqrt{5}}$\\\\
+        y[n] = $\frac{\sqrt{5}+1}{2\sqrt{5}}* (\frac{3+\sqrt{5}}{2})^{n}$ +  $\frac{\sqrt{5}-1}{2\sqrt{5}}* (\frac{3-\sqrt{5}}{2})^{n}$\\\\
+        
+        
+    
+    
+ 
+    \end{enumerate}
+
+\item %write the solution of q5
+  \begin{enumerate}
+    \item %write the solution of q6a 
+    y(t) = h(t) and x(t) = $\lambda(t) $\\\\
+   $h^{2}$ + 6h +8 = 0\\\\
+   (h+4)(h+2) = 0\\\\
+   h = -4,-2\\\\
+   $h_{h}(t)$ = $k_{1}e^{-4t}$ + $k_{2}e^{-2t}$\\\\
+   $h^{''}(t) + 6 h^{'}(t) + h(t) = 2\lambda(t)  $\\\\
+   Take both sizes integral \\\\
+   $\int_{-0}^{+0}h^{''}(t)dt + 6 \int_{-0}^{+0}h^{'}(t)dt + \int_{-0}^{+0}h(t)dt = \int_{-0}^{+0}2\lambda(t)$dt \\\\
+   0 + 6(h(+0) - h(-0) ) = 2 \\\\
+   h(+0) = $ \frac{1}{3} $
+   The system is initially at rest\\\\
+   h(+0) = $k_{1}e^{0}$ + $k_{2}e^{0}$\\\\
+   $k_{1} + k_{2} =  \frac{1}{3} $\\\\
+   for t = -1\\\\
+   h(-1) = $k_{1}e^{4}$ + $k_{2}e^{2}$ = 0\\\\
+   $k_{1}e^{4} = -k_{2}e^{2}$  \\\\
+   $k_{2} = -k_{1}e^{2}$  \\\\
+   $(1-e^{2} )k_{1} =  \frac{1}{3} $\\\\
+   $k_{1} =  \frac{1}{3(1-e^{2} )} $\\\\
+   $k_{2} =  \frac{-e^{2}}{3(1-e^{2} )} $\\\\
+   h(t) = $\frac{1}{3(1-e^{2} )}e^{-4t} - \frac{e^{2}}{3(1-e^{2} )}e^{-2t} $
+   
+   
+   
+   
+   
+  
+
+    
+    
+    \item %write the solution of q6b
+        -The system is causal because it is initially at rest. \\\\
+        -The system is has memory, because it is related to the past value of the output signal y(t).\\\\
+        -The system is not stable, because the output signal y(t) is not a bounded signal.\\\\
+        -The system is non-invertible, because it has many-to-one mapping.
+    
+ 
+
+    \end{enumerate}
+  
+
+
+
+
+
+
+\newpage
+
+
+\end{enumerate}
+\end{document}

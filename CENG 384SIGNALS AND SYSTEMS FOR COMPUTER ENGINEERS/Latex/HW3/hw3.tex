@@ -1,0 +1,218 @@
+\documentclass[10pt,a4paper, margin=1in]{article}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, pifont}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{tkz-euclide}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\begin{filecontents}{q1.dat}
+ n   xn 
+ 0   1
+ 1   -0.5  
+ 2   0
+ 3   -0.5
+\end{filecontents}
+\begin{filecontents}{q2.dat}
+ n   xn 
+ 0   0.75
+ 1   0.56  
+ 2   0.25
+ 3   0.56
+\end{filecontents}
+\begin{filecontents}{q3.dat}
+ n   xn 
+ 0   2
+ 1   0  
+ 2   0
+ 3   2
+\end{filecontents}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=10mm,
+ right=10mm,
+ top=10mm,
+ bottom=10mm,
+ }
+ % Write both of your names here. Fill exxxxxxx with your ceng mail address.
+ \author{
+  OREN, Zeki\\
+  \texttt{e2264612@ceng.metu.edu.tr}
+  \and
+  KOSEN, Emrah\\
+  \texttt{e1942317@ceng.metu.edu.tr}
+}
+\title{CENG 384 - Signals and Systems for Computer Engineers \\
+Spring 2018-2019 \\
+Written Assignment 3}
+\begin{document}
+\maketitle
+
+
+
+\noindent\rule{19cm}{1.2pt}
+
+\begin{enumerate}
+
+\item 
+    \begin{enumerate}
+    % Write your solutions in the following items.
+    \item %write the solution of q1a
+    Period N = 4 and $w_{0}$ = $\dfrac{\pi}{2}$ in this equation\\\\
+    $a_{k}$ = $\dfrac{1}{N}\sum_{n=<N>}^{}$ x(n)$e^{-jw_{0}kn}$\\\\
+    $a_{k}$ = $\dfrac{1}{4}$(0 + $e^{-j\frac{\pi}{2}k}$ + 2$e^{-j\frac{\pi}{2}k2}$ + $e^{-j\frac{\pi}{2}k3}$) = $\dfrac{1}{4}$((cosk$\frac{\pi}{2}$ - jsink$\frac{\pi}{2}$) + 2(cosk$\pi$ - jsink$\pi$) + (cosk$\frac{3\pi}{2}$ - jsink$\frac{3\pi}{2}$))\\\\
+    $a_{0}$ = $\dfrac{1}{4}$((1-0) + 2(1-0) + (1-0)) = 1\\\\
+    $a_{1}$ = $\dfrac{1}{4}$((0-j) + 2(-1-0) + (0+j)) = -$\dfrac{1}{2}$\\\\
+    $a_{2}$ = $\dfrac{1}{2}$((-1-0) + 2(1-0) + (-1-0)) = 0\\\\
+    $a_{3}$ = $\dfrac{1}{4}$((0+j) + 2(-1-0) + (0-j)) = -$\dfrac{1}{2}$\\\\
+    \begin{figure} [h!]
+    \centering
+    \begin{tikzpicture}[scale=1.0] 
+      \begin{axis}[
+          axis lines=middle,
+          xlabel={$k$},
+          ylabel={$\boldsymbol{a_{k}}$},
+          xtick={0, ..., 3},
+          ytick={-2, -1.5, -1, -0.5, 0, 0.50, 1, 1.5, 2},
+          ymin=-2, ymax=2,
+          xmin=-1, xmax=4,
+          every axis x label/.style={at={(ticklabel* cs:1.05)}, anchor=west,},
+          every axis y label/.style={at={(ticklabel* cs:1.05)}, anchor=south,},
+          grid,
+        ]
+        \addplot [ycomb, black, thick, mark=*] table [x={n}, y={xn}] {q1.dat};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{$k$ vs. $a_{k}$ of x(n)}
+    \label{fig:q1}
+\end{figure}
+\newpage
+    \item %write the solution of q1b 
+    i)\\\\
+    y(n) = x(n) - $\sum_{k=-\infty}^{\infty} \delta$(n + 1 - 4k)\\\\\\
+    ii)\\\\
+    Period N = 4 and $w_{0}$ = $\dfrac{\pi}{2}$ in this equation\\\\
+    $a_{k}$ = $\dfrac{1}{N}\sum_{n=<N>}^{}$ x(n)$e^{-jw_{0}kn}$\\\\
+    $a_{k}$ = $\dfrac{1}{4}$(0 + $e^{-j\frac{\pi}{2}k}$ + 2$e^{-j\frac{\pi}{2}k2}$ + 0) = $\dfrac{1}{4}$((cosk$\frac{\pi}{2}$ - jsink$\frac{\pi}{2}$) + 2(cosk$\pi$ - jsink$\pi$))\\\\
+    $a_{0}$ = $\dfrac{1}{4}$((1-0) + 2(1-0)) = $\dfrac{3}{4}$\\\\
+    $a_{1}$ = $\dfrac{1}{4}$((0-j) + 2(-1-0)) = $\dfrac{-j-2}{4}$, $\hspace{0.5cm}$ $|a_{1}|$ = $\sqrt{(-\frac{1}{4})^{2} + (-\frac{2}{4})^{2}}$ = 0.56\\\\  
+    $a_{2}$ = $\dfrac{1}{2}$((-1-0) + 2(1-0)) = $\dfrac{1}{4}$\\\\
+    $a_{3}$ = $\dfrac{1}{4}$((0+j) + 2(-1-0)) = $\dfrac{j-2}{4}$, $\hspace{0.5cm}$ $|a_{3}|$ = $\sqrt{(\frac{1}{4})^{2} + (-\frac{2}{4})^{2}}$ = 0.56\\\\
+    \begin{figure} [h!]
+    \centering
+    \begin{tikzpicture}[scale=1.0] 
+      \begin{axis}[
+          axis lines=middle,
+          xlabel={$k$},
+          ylabel={$\boldsymbol{|a_{k}|}$},
+          xtick={0, ..., 3},
+          ytick={0, 0.25, 0.50, 0.75, 1},
+          ymin=0, ymax=1,
+          xmin=-1, xmax=4,
+          every axis x label/.style={at={(ticklabel* cs:1.05)}, anchor=west,},
+          every axis y label/.style={at={(ticklabel* cs:1.05)}, anchor=south,},
+          grid,
+        ]
+        \addplot [ycomb, black, thick, mark=*] table [x={n}, y={xn}] {q2.dat};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{$k$ vs. $|a_{k}|$ of y(n)}
+    \label{fig:q2}
+\end{figure}
+\\\\\\\\
+    \end{enumerate}
+\newpage
+
+\item %write the solution of q2
+a) N = 4 and $w_{0}$ = $\dfrac{\pi}{2}$ \\
+b) We know that x(n) is periodic. So, $\sum_{k=0}^{3}$ x(k) = 4\\
+c) $a_{-3}$ = $a_{1}$ and also $a_{15}$ = $a_{11}$ = $a_{3}$. Then, $|a_{1}$ - $a_{3}|$ = 1 and $a_{1}$ = $a_{3}^{*}$\\
+d) One of the coefficients is zero\\
+e) $\dfrac{1}{4}\sum_{k=0}^{3}$ x(k)($e^{-jk\frac{\pi}{2}}$ + $e^{-jk\frac{3\pi}{2}}$) = 1. So, $a_{1}$ + $a_{3}$ = 1\\\\\\
+$a_{0}$ = $\dfrac{1}{4}$(x(0) + x(1) + x(2) + x(3)) = 1\\
+$a_{1}$ = a + jb and $a_{3}$ = a - jb. So, (a + jb) + (a - jb) = 1, 2a = 1. Then, a = $\dfrac{1}{2}$ and b = $\dfrac{1}{2}$\\
+$a_{1}$ = $\dfrac{1 + j}{2}$ and $a_{3}$ = $\dfrac{1 - j}{2}$ and $a_{2}$ = 0\\\\\\
+x(0) = 1 + $\dfrac{1 + j}{2}$ + 0 + $\dfrac{1 - j}{2}$ = 2\\
+x(1) = 1 + $\dfrac{-1 + j}{2}$ + 0 + $\dfrac{-1 - j}{2}$ = 0\\
+x(2) = 1 + $\dfrac{-1 - j}{2}$ + 0 + $\dfrac{-1 + j}{2}$ = 0\\
+x(3) = 1 + $\dfrac{1 - j}{2}$ + 0 + $\dfrac{1 + j}{2}$ = 2\\
+    \begin{figure} [h!]
+    \centering
+    \begin{tikzpicture}[scale=1.0] 
+      \begin{axis}[
+          axis lines=middle,
+          xlabel={$n$},
+          ylabel={$\boldsymbol{x(n)}$},
+          xtick={0, ..., 3},
+          ytick={0, 1, 2, 3},
+          ymin=0, ymax=3,
+          xmin=-1, xmax=4,
+          every axis x label/.style={at={(ticklabel* cs:1.05)}, anchor=west,},
+          every axis y label/.style={at={(ticklabel* cs:1.05)}, anchor=south,},
+          grid,
+        ]
+        \addplot [ycomb, black, thick, mark=*] table [x={n}, y={xn}] {q3.dat};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{$n$ vs. $x(n)$}
+    \label{fig:q3}
+\end{figure}
+\\\\\\
+\item %write the solution of q3
+    
+    $w_0 = K\dfrac{2\pi}{T}$\\\\
+    $-w_0 < w < w_0$  between this integral Y(jw) = X(jw)\\\\  
+    x(t) + r(t)$ \rightarrow|$ h(t) $| \rightarrow$ y(t) = x(t)\\\\
+    x(t) = $e^{jwt}\rightarrow|$ h(t) $| \rightarrow$ y(t) = H(jw)$e^{jwt}$\\\\
+    As we said on the above Y(jw) = X(jw). So, the frequency response must be 1 (H(jw) = 1)\\\\
+    h(t) = $\dfrac{1}{2\pi} \int_{-w_0}^{w_0} H(jw)e^{jwt} dw $ = $\dfrac{1}{2\pi}\dfrac{(e^{jwt_0} - e^{-jwt_0})}{jt}$ = $\dfrac{1}{t\pi}\dfrac{(e^{jwt_0} - e^{-jwt_0})}{2j}$\\\\
+    h(t)= $\dfrac{1}{t\pi}sin(w_{0}t)$\\\\\\\\\\
+ 
+
+\item 
+    \begin{enumerate}
+    \item %write the solution of q4a
+        
+        $y''(t) + 5y'(t) + 6y(t) = 4x'(t) + x(t)$\\\\
+        x(t) = $e^{jwt}  \rightarrow | h(t) |\rightarrow y(t) = H(jw)e^{jwt}$ \\\\
+        $x'(t) = (jw)e^{jwt}$\\\\
+        $y'(t) = (jw)e^{jwt}H(jw)$\\\\
+        $y''(t) = (jw)^2e^{jwt}H(jw)$\\\\
+        $y''(t) + 5y'(t) + 6y(t) = 4x'(t) + x(t)$\\\\
+        $(jw)^2e^{jwt}H(jw) + 5(jw)e^{jwt}H(jw) + 6H(jw)e^{jwt} = 4(jw)e^{jwt} +  e^{jwt}$\\\\
+        $ H(jw)((jw)^2 + 5(jw) + 6) = 4(jw) + 1$\\\\
+         $ H(jw)=   \dfrac{4(jw) + 1}{((jw)^2 + 5(jw) + 6) } = \dfrac{4(jw) + 1}{(jw + 3)(jw + 2)}$\\\\\\
+        
+        
+        
+    
+    \item %write the solution of q4b
+    $ H(jw)$ = $\dfrac{4(jw) + 1}{(jw + 3)(jw + 2)}$ = $\dfrac{A}{(jw + 3)}$ + $\dfrac{B}{(jw + 2)}$ $\hspace{0.5cm}$ A(jw+2) + B(jw+3) = 4(jw)+1\\\\
+    A = 11 and B = -7 So, H(jw) = $\dfrac{11}{(jw + 3)}$ - $\dfrac{7}{(jw + 2)}$\\\\
+    Inverse Fourier Transform of $ H(jw)$ = ((11$e^{-3t}$) - (7$e^{-2t}$))u(t)\\\\\\
+    
+    
+    
+    \item %write the solution of q4c
+    x(jw) = $ \int_{-\infty}^{\infty} x(t)*e^{-jwt} dt $\\\\
+     = $\dfrac{1}{4} \int_{0}^{\infty} e^{-(\frac{t}{4})}e^{-jwt} dt$ = $\dfrac{1}{4} \int_{0}^{\infty} e^{-t(jw+\frac{1}{4})}dt$ = $\dfrac{1}{4} \dfrac{e^{-t(jw + \frac{1}{4})}}{-(jw + \frac{1}{4})}  0 to \infty$\\\\
+     X(jw) = $ \dfrac{1}{4(jw) + 1}$\\\\
+     
+     $ H(jw)=   \dfrac{4(jw) +1}{(jw+2)(jw+3)}$\\\\
+     Y(jw) = X(jw).H(jw) = $ \dfrac{1}{(jw+2)(jw+3)} $\\\\\\
+     As a result, inverse Fourier Transform of Y(jw) is equal to y(t);\\\\
+     y(t) = ($e^{-2t}$ - $e^{-3t}$)u(t)
+     
+    
+    \end{enumerate}
+
+
+
+\end{enumerate}
+\end{document}
+
