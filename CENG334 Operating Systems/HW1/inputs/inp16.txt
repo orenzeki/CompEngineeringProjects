@@ -1,0 +1,4 @@
+100 10 3
+./SlowStartBidder 2 20 0
+./SlowStartBidder 2 15 1
+./SlowStartBidder 2 10 2

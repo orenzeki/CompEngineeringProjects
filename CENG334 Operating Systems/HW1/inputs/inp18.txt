@@ -1,0 +1,6 @@
+500 20 5
+./Bidder 2 10 0
+./SlowStartBidder 2 2 1
+./PatternBidder 9 5 2 1 0 2 3 0 1 2
+./Bidder 2 25 3
+./PatternBidder 6 50 4 0 0 2 3

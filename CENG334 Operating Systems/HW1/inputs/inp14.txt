@@ -1,0 +1,4 @@
+100 10 3
+./Bidder 2 10 0
+./Bidder 2 10 1
+./Bidder 2 5 2
