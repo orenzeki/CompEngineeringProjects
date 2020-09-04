@@ -1,0 +1,6 @@
+The text is I turned the moon into something I call a Death Star.
+2 2 4 12 48 240
+1 2 1078
+4 141
+iiiiii
+3 2 6 5 1 4                  
