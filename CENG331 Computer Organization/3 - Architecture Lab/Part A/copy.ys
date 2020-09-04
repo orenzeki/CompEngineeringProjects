@@ -1,0 +1,42 @@
+# Name = Zeki Ören
+# ID = 2264612
+
+.pos 0			# Address 0
+irmovq stack, %rsp  	# Stack pointer  
+call init		# Execution on init
+halt			
+
+.align 8
+# Source block
+src:
+	.quad 0x00a
+	.quad 0x0b0
+	.quad 0xc00
+# Destination block
+dest:
+	.quad 0x111
+	.quad 0x222
+	.quad 0x333
+
+init:
+	xorq %rax, %rax 	# result = 0
+	irmovq src, %rdi	# Parameters
+	irmovq dest, %rsi
+	irmovq $3, %rdx		# Set 3 on rdx
+	irmovq $8, %r8		# Set 8 on r8
+	irmovq $1, %r9		# Set 1 on r9
+
+copy_block:
+	mrmovq (%rdi), %r11	# long val = *src
+	addq %r8, %rdi		# src++
+	rmmovq %r11,(%rsi)	# *dest = val
+	addq %r8, %rsi		# dest++
+	xorq %r11,%rax		# result ˆ= val
+	subq %r9,%rdx		# len--	
+	andq %rdx,%rdx		# Condition codes
+	jne copy_block
+	ret
+
+.pos 0x200		
+stack:	
+

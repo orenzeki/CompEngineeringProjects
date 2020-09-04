@@ -1,0 +1,43 @@
+# Name = Zeki Ören
+# ID = 2264612
+
+	.pos 0			# Address 0
+	irmovq stack, %rsp  	# Stack pointer  
+	call init		# Execution on init
+	halt			
+
+# Sample linked list
+.align 8
+ele1:
+	.quad 0x00a
+	.quad ele2
+ele2:
+	.quad 0x0b0
+	.quad ele3
+ele3:
+	.quad 0xc00
+	.quad 0
+
+init:
+	irmovq ele1, %rdi	# Set parameter 
+
+
+sum:
+	xorq %rax, %rax 	# total = 0
+	andq %rdi, %rdi 	# Condition codes
+	jne calculate 
+	ret			# Return total
+
+
+calculate:
+	mrmovq (%rdi), %r11 	# Hold the value on r11
+	addq %r11, %rax 	# val += ls->val
+	mrmovq 8(%rdi), %rdi    # ls = ls->next
+	andq %rdi, %rdi 	# Condition codes
+	jne calculate 	
+	ret		
+	
+
+.pos 0x200		
+stack:	
+
